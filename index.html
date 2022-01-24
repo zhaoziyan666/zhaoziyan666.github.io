@@ -9,51 +9,121 @@
 	<header>欢迎访问赵梓岩网！请牢记本站域名：“zhaoziyan666.github.io”</header>
 	<main>
 		<h1>赵梓岩的官方网站</h1><span id="runtime_span"></span>
-		<FONT color=#990000 size=3>距离冬奥会还有<b><SPAN id=span_dt_dt></SPAN></b></FONT>
-<SCRIPT language=javascript>
-<!--
-function show_date_time(){
-window.setTimeout("show_date_time()", 1000);
-BirthDay=new Date("2-4-2022");//
-today=new Date();
-timeold=(BirthDay.getTime()-today.getTime());
-sectimeold=timeold/1000
-secondsold=Math.floor(sectimeold);
-msPerDay=24*60*60*1000
-e_daysold=timeold/msPerDay
-daysold=Math.floor(e_daysold);
-e_hrsold=(e_daysold-daysold)*24;
-hrsold=Math.floor(e_hrsold);
-e_minsold=(e_hrsold-hrsold)*60;
-minsold=Math.floor((e_hrsold-hrsold)*60);
-seconds=Math.floor((e_minsold-minsold)*60);
-span_dt_dt.innerHTML=""+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒"+"" ;
-}
-show_date_time();
-//-->
-</SCRIPT>
-<script type="text/javascript">
-        document.onkeydown = function () {
-            if (window.event && window.event.keyCode == 123) {
-                event.keyCode = 0;
-                event.returnValue = false;
-                return false;
-            }
-        };
+<script language="LiveScript">
+now = new Date(),hour = now.getHours()
+if(hour < 6){document.write("明天不用上班了吗?")}
+else if (hour < 8){document.write("全新的一天!")}
+else if (hour < 12){document.write("早安!")}
+else if (hour < 14){document.write("外面太阳大吗？")}
+else if (hour < 18){document.write("午安!")}
+else if (hour < 22){document.write("晚上好!")}
+else if (hour < 24){document.write("夜深了! 要注意身体呀! 祝你做个好梦!")}
+// -->
 </script>
-<script language="Javascript">
-document.oncontextmenu=new Function("event.returnValue=false");
-document.onselectstart=new Function("event.returnValue=false");
-</script>	
-<script type="text/javascript">
-document.oncontextmenu=function(e){return false;}
-</script>\n
-<script type="text/javascript">function show_runtime(){window.setTimeout("show_runtime()",1000);X=new 
-Date("1/1/2022 00:00:00");
-Y=new Date();T=(Y.getTime()-X.getTime());M=24*60*60*1000;
-a=T/M;A=Math.floor(a);b=(a-A)*24;B=Math.floor(b);c=(b-B)*60;C=Math.floor((b-B)*60);D=Math.floor((c-C)*60);
-runtime_span.innerHTML="<h2>本站稳定运行: "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script><h1><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>尊敬的用户！现在时间为</title><div id="datetime"><script>setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);</script></div></h1>	
+		<script>
+function tick() {
+var hours, minutes, seconds, xfile;
+var intHours, intMinutes, intSeconds;
+var today;
+today = new Date();
+intHours = today.getHours();
+intMinutes = today.getMinutes();
+intSeconds = today.getSeconds();
+if (intHours == 0) {
+hours = "12:";
+xfile = "午夜";
+} else if (intHours < 12) {
+hours = intHours+":";
+xfile = "上午";
+} else if (intHours == 12) {
+hours = "12:";
+xfile = "正午";
+} else {
+intHours = intHours - 12
+hours = intHours + ":";
+xfile = "下午";
+}
+if (intMinutes < 10) {
+minutes = "0"+intMinutes+":";
+} else {
+minutes = intMinutes+":";
+}
+if (intSeconds < 10) {
+seconds = "0"+intSeconds+" ";
+} else {
+seconds = intSeconds+" ";
+}
+timeString = xfile+hours+minutes+seconds;
+Clock.innerHTML = timeString;
+window.setTimeout("tick();", 100);
+}
+window.onload = tick;
+</script>
+
+<div id="Clock" style="font-size: 20; color:#000000"></div>
+<SCRIPT language=javascript>
+<!--hide script from old browsers
+document.write("最后更新时间: " + document.lastModified + "")
+// end hiding -->
+</SCRIPT>
+		<script language="javascript">
+var ap_name = navigator.appName;
+var ap_vinfo = navigator.appVersion;
+var ap_ver = parseFloat(ap_vinfo.substring(0,ap_vinfo.indexOf('(')));
+
+var time_start = new Date();
+var clock_start = time_start.getTime();
+var dl_ok=false;
+
+function init ()
+{
+if(ap_name=="Netscape" && ap_ver>=3.0)
+dl_ok=true;
+return true;
+}
+
+function get_time_spent ()
+{
+var time_now = new Date();
+return((time_now.getTime() - clock_start)/1000);
+}
+
+function show_secs () // show the time user spent on the side
+{
+var i_total_secs = Math.round(get_time_spent());
+var i_secs_spent = i_total_secs % 60;
+var i_mins_spent = Math.round((i_total_secs-30)/60);
+var s_secs_spent = "" + ((i_secs_spent>9) ? i_secs_spent : "0" + i_secs_spent);
+var s_mins_spent = "" + ((i_mins_spent>9) ? i_mins_spent : "0" + i_mins_spent);
+document.fm0.time_spent.value = s_mins_spent + ":" + s_secs_spent;
+window.setTimeout('show_secs()',1000);
+}
+
+// -->
+</script>
+<FORM name="fm0" onSubmit="0"><FONT COLOR="#6060FF">停留时间:
+</FONT><INPUT type="text" name="time_spent" size=7 onFocus="this.blur()"></FORM>
+
+第二步：在你主页源文件<body>中加入下面代码的兰色部分
+
+<BODY onLoad="init(); window.setTimeout('show_secs()',1);">
+
+本站稳定运行: "+A+"天"+B+"小时"+C+"分"+D+"秒"}show_runtime();</script><h1><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>尊敬的用户！现在时间为</title><div id="datetime"><script>setInterval("document.getElementById('datetime').innerHTML=new Date().toLocaleString();", 1000);</script></div></h1>	
 <style>
+<script>
+var mydate=new Date()
+var year=mydate.getYear()
+if (year < 1000)
+year+=1900
+var day=mydate.getDay()
+var month=mydate.getMonth()
+var daym=mydate.getDate()
+if (daym<10)
+daym="0"+daym
+var dayarray=new Array("星期天","星期一","星期二","星期三","星期四","星期五","星期六")
+var montharray=new Array("1","2","3","4","5","6","7","8","9","10","11","12")
+document.write("今天是"+year+"年"+montharray[month]+"月"+daym+"日"+"，"+dayarray[day])
+</script>
 body {
 -moz-user-select:none;   <!--禁止文字让选中-->
  //禁用键盘右键
@@ -169,4 +239,80 @@ visits = parseInt(visits) + 1
 setCookie("counter", visits, now)
 document.write("流量：" + visits)
 // -->
+</script>
+<STYLE type=text/css>
+BODY {COLOR: #000000; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; LINE-HEIGHT: 13pt}
+TD {COLOR: #000000; FONT-FAMILY: "宋体"; FONT-SIZE: 9pt; LINE-HEIGHT: 13pt}
+A:visited {COLOR: #000080;text-decoration:none}
+a:link { text-decoration:none }
+a:hover { text-decoration:underline }
+.f12 {font-size:12px;}
+.f13 {font-size:14.9px; LINE-HEIGHT: 120%}
+.f24 {font-size:24px;LINE-HEIGHT: 120%}
+.f14 {font-size:14.9px; LINE-HEIGHT: 170%}
+</STYLE>
+<script LANGUAGE="javascript">
+Zp=670;H='....';H=H.split('');M='.....';M=M.split('');S='......';S=S.split('');Yp=0;Xp=0;Yb=8;Xb=8;d_=12;
+
+ns=(document.layers)?1:0;fCol='222222';sCol='ff0000';mCol='0000ee';hCol='green';if (ns){dgts='1 2 3 4 5 6 7 8 9 10 11 12';
+
+dgts=dgts.split(' ');for (i=0;i<d_;i++){document.write('<layer name=nsDigits'+i+' top=0 left=0 height=30 width=30>
+
+<center><font face=Arial,Verdana size=1 color='+fCol+'>'+dgts[i]+'</font></center></layer>');}for (i=0;i<M.length;i++)
+
+{document.write('<layer name=ny'+i+' top=0 left=0 bgcolor='+mCol+' clip="0,0,2,2"></layer>');}for (i=0;i<H.length;i++)
+
+{document.write('<layer name=nz'+i+' top=0 left=0 bgcolor='+hCol+' clip="0,0,2,2"></layer>');}for (i=0;i<S.length;i++)
+
+{document.write('<layer name=nx'+i+' top=0 left=0 bgcolor='+sCol+' clip="0,0,2,2"></layer>');}}else{document.write('
+
+<div style="position:absolute;top:0px;left:0px"><div style="position:relative">');for (i=1;i<d_+1;i++){document.write
+
+('<div id="ieDigits" style="position:absolute;top:0px;left:0px;width:30px;height:30px;font-family:Arial,Verdana;font-size:
+
+10px;color:'+fCol+';text-align:center;padding-top:10px">'+i+'</div>');}document.write('</div></div>');document.write
+
+('<div style="position:absolute;top:0px;left:0px"><div style="position:relative">');for (i=0;i<M.length;i++){document.write
+
+('<div id=y style="position:absolute;width:2px;height:2px;font-size:2px;background:'+mCol+'"></div>');}document.write('</div>
+
+</div>');document.write('</div></div>');document.write('<div style="position:absolute;top:0px;left:0px">
+
+<div style="position:relative">');for (i=0;i<H.length;i++){document.write
+
+('<div id=z style="position:absolute;width:2px;height:2px;font-size:2px;background:'+hCol+'"></div>');}document.write('</div>
+
+</div>');document.write('<div style="position:absolute;top:0px;left:0px"><div style="position:relative">');for (i=0;i
+
+<S.length;i++){document.write('<div id=x style="position:absolute;width:2px;height:2px;font-size:2px;background:'+sCol+'">
+
+</div>');}document.write('</div></div>');}function clock(){time=new Date ();secs=time.getSeconds();sec=-1.57+Math.PI*secs/
+
+30;mins=time.getMinutes();min=-1.57+Math.PI*mins/30;hr=time.getHours();hrs=-1.57+Math.PI*hr/6+Math.PI*parseInt(time.getMinutes
+
+())/360;if (ns){Yp=window.pageYOffset+windows.innerHeight-60;Xp=80;}else
+
+{Yp=document.body.scrollTop+window.document.body.clientHeight-60;Xp=document.body.scrollLeft+60;}if (ns){for (i=0;i<d_;++i)
+
+{document.layers["nsDigits"+i].top=Yp-5+40*Math.sin(-0.49+d_+i/1.9);document.layers["nsDigits"+i].left=Xp-15+40*Math.cos(-0.49
+
++d_+i/1.9);}for (i=0;i<S.length;i++){document.layers["nx"+i].top=Yp+i*Yb*Math.sin(sec);document.layers
+
+["nx"+i].left=Xp+i*Xb*Math.cos(sec);}for (i=0;i<M.length;i++){document.layers["ny"+i].top=Yp+i*Yb*Math.sin(min);document.layers
+
+["ny"+i].left=Xp+i*Xb*Math.cos(min);}for (i=0;i<H.length;i++){document.layers["nz"+i].top=Yp+i*Yb*Math.sin(hrs);document.layers
+
+["nz"+i].left=Xp+i*Xb*Math.cos(hrs);}}else{for (i=0;i<d_;++i){ieDigits[i].style.pixelTop=Yp-15+40*Math.sin(-0.49+d_+i/
+
+1.9);ieDigits[i].style.pixelLeft=Xp-14+40*Math.cos(-0.49+d_+i/1.9)+Zp;}for (i=0;i<S.length;i++){x
+
+[i].style.pixelTop=Yp+i*Yb*Math.sin(sec);x[i].style.pixelLeft=Xp+i*Xb*Math.cos(sec)+Zp;}for (i=0;i<M.length;i++){y
+
+[i].style.pixelTop=Yp+i*Yb*Math.sin(min);y[i].style.pixelLeft=Xp+i*Xb*Math.cos(min)+Zp;}for (i=0;i<H.length;i++){z
+
+[i].style.pixelTop=Yp+i*Yb*Math.sin(hrs);z[i].style.pixelLeft=Xp+i*Xb*Math.cos(hrs)+Zp;}}setTimeout('clock()', 50);}
+
+
+if (document.layers || document.all) {window.onload=clock;}
+window.onload=clock;
 </script>
